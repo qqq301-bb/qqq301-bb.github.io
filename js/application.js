@@ -5,21 +5,12 @@ $(function() {
   // slimscroll
   if (typeof $.fn.slimScroll != 'undefined') {
     $(".sidebar .slimContent").slimScroll({
-      height: $(window).height(),
-      color: "rgba(0,0,0,0.15)",
-      size: "5px",
-      position: 'right',
+      height: "auto",
+      color: "rgba(0,0,0,0.2)",
+      size: "3px",
       // allowPageScroll: true
     });
   }
-
-  $('#collapseToc').on('shown.bs.collapse', function() {
-    // do something…
-    // slimscroll
-    if (typeof $.fn.slimScroll != 'undefined') {
-      $(".sidebar .slimContent").slimScroll().on('slimscroll');
-    }
-  });
 
   // geopattern 背景生成
   $(".geopattern").each(function() {
@@ -29,6 +20,16 @@ $(function() {
   // okayNav
   var navigation = $('#nav-main').okayNav({
     swipe_enabled: false, // If true, you'll be able to swipe left/right to open the navigation
+  });
+
+  // donate
+  $('.donate-box').on('click', '.pay_item', function() {
+    var dataid = $(this).attr('data-id');
+    var qrcode = $(this).attr('data-src') ? $(this).attr('data-src') : "assets/images/donate/" + dataid + "img.png";
+    var text = dataid == "alipay" ? "支付宝" : "微信";
+    $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+    $(".donate-payimg img").attr("src", qrcode);
+    $("#donate-pay_txt").text(text);
   });
 
   // modal居中
@@ -48,7 +49,6 @@ $(function() {
     zindex: 42,
     edgeOffset: 0
   });
-  
   $('[data-stick-top]').keepInView({
     fixed: true,
     parentClass: "has-sticky",
@@ -57,21 +57,6 @@ $(function() {
     zindex: 42,
     edgeOffset: 0
   });
-
-  // menu auto highlight
-  var menuHighlight = $("ul.main-nav").hasClass('menu-highlight');
-  if (menuHighlight) {
-    var currentPathname = location.pathname,
-      $menuList = $("ul.main-nav>li"),
-      activeIndex = -1;
-    for (var i = 0, length = $menuList.length; i < length; i++) {
-      var itemHref = $($menuList[i]).find('a').attr('href');
-      if (currentPathname.indexOf(itemHref) > -1 ||
-        (currentPathname === '/' && (itemHref === '/.' || itemHref === '/' || itemHref === 'index.html' || itemHref === '/index.html'))) {
-        activeIndex = i;
-      }
-      $($menuList[i]).removeClass('active');
-    }
-    $menuList[activeIndex] && $($menuList[activeIndex]).addClass('active');
-  }
 });
+
+//# sourceMappingURL=application.js.map
