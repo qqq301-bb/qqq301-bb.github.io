@@ -188,7 +188,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      834 字
+      854 字
     </span>
   
 
@@ -198,7 +198,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      10
        分钟
     </span>
   
@@ -235,22 +235,22 @@
 zerotier使用起来非常方便，而且支持的平台很全，如Android，ios，synology等，重点是免费的。
 只是远程访问家中路由，不传输文件的话，是很好用的。                                                                                                                                                                                                                                                                                
 </code></pre>
-<h1 id="下面是我搭建的教程"><a href="#下面是我搭建的教程" class="headerlink" title="下面是我搭建的教程"></a>下面是我搭建的教程</h1><h3 id="第一步，注册。"><a href="#第一步，注册。" class="headerlink" title="第一步，注册。"></a>第一步，注册。</h3><p>首先登陆zerotier官网 注册账号并建立一个新的虚拟局域网，过程和其他网站一样很简单而且有引导，不再赘述。<br>![Create A Network.PNG](C:\Users\Administrator\blog\photo\Create A Network.PNG)</p>
-<h3 id="第二步，配置虚拟网络"><a href="#第二步，配置虚拟网络" class="headerlink" title="第二步，配置虚拟网络"></a>第二步，配置虚拟网络</h3><p><strong>首先</strong> 复制zerotier生成的key并在openwrt 界面输入拿到的key<br>![copy id.PNG](C:\Users\Administrator\blog\photo\copy id.PNG)<br>![paste key.PNG](C:\Users\Administrator\blog\photo\paste key.PNG)</p>
+<h1 id="下面是我搭建的教程"><a href="#下面是我搭建的教程" class="headerlink" title="下面是我搭建的教程"></a>下面是我搭建的教程</h1><h3 id="第一步，注册。"><a href="#第一步，注册。" class="headerlink" title="第一步，注册。"></a>第一步，注册。</h3><p>首先登陆zerotier官网 注册账号并建立一个新的虚拟局域网，过程和其他网站一样很简单而且有引导，不再赘述。<br>![Create A Network.PNG](C:\Users\Administrator\blog\themes\fluid\source\img\photo\Create A Network.PNG)</p>
+<h3 id="第二步，配置虚拟网络"><a href="#第二步，配置虚拟网络" class="headerlink" title="第二步，配置虚拟网络"></a>第二步，配置虚拟网络</h3><p><strong>首先</strong> 复制zerotier生成的key并在openwrt 界面输入拿到的key<br>![copy id.PNG](C:\Users\Administrator\blog\themes\fluid\source\img\photo\copy id.PNG)<br>![paste key.PNG](C:\Users\Administrator\blog\themes\fluid\source\img\photo\paste key.PNG)</p>
 <ul>
 <li>[x]启动</li>
 <li>[x]自动允许客户端NET</li>
 </ul>
-<p>完成后，稍等一下刷新zerotier网页，在Members列表会出现新的设备，这台设备就是openwrt。可以在address中的Mac地址和软路由中接口信息的log对照一下。<br>确认无误后，添加备注并在前方的复选框中打勾。<br>这时，openwrt的设备就成功拿到了zerotier的地址。<br>我们可以用同样的方法配置其他设备。<br>![openwrt configuration information.PNG](C:\Users\Administrator\blog\photo\openwrt configuration information.PNG)</p>
+<p>完成后，稍等一下刷新zerotier网页，在Members列表会出现新的设备，这台设备就是openwrt。可以在address中的Mac地址和软路由中接口信息的log对照一下。<br>确认无误后，添加备注并在前方的复选框中打勾。<br>这时，openwrt的设备就成功拿到了zerotier的地址。<br>我们可以用同样的方法配置其他设备。<br>![openwrt configuration information.PNG](C:\Users\Administrator\blog\themes\fluid\source\img\photo\openwrt configuration information.PNG)</p>
 <h3 id="第三步，配置openwrt接口"><a href="#第三步，配置openwrt接口" class="headerlink" title="第三步，配置openwrt接口"></a>第三步，配置openwrt接口</h3><p><em>到现在为止，我们添加到虚拟网络中的设备就可以互访了。但是想访问openwrt网络下的其他设备，还需要如下操作。</em></p>
 <p>在openwrt 网络 —- 接口下，添加新接口。<br>接口名称可以随便起，为了方便记忆，我命名为zerotier。</p>
 <p>协议 是静态地址<br>在包括以下接口复选框 勾选 以太网适配器：”[zt开头的接口]“这里每个人的都不一样，但是都是zt开头的内容。我们勾选他，并复制这段英文。一会会用到。<br>保存设置-提交</p>
-<p>![api config.PNG](C:\Users\Administrator\blog\photo\api config.PNG)</p>
-<p>保存后我们对新添加的接口进行修改<br>在IPv4地址中 填入zerotier分配给我们的虚拟ip<br>在子网掩码中 填入 255.255.255.0<br>点击 防火墙设置 把防火墙配置到lan口。<br><img src="C:\Users\Administrator\blog\photo\防火墙设置.PNG" srcset="/img/loading.gif" alt="防火墙设置.PNG"><br> 保存&amp;应用</p>
+<p>![api config.PNG](C:\Users\Administrator\blog\themes\fluid\source\img\photo\api config.PNG)</p>
+<p>保存后我们对新添加的接口进行修改<br>在IPv4地址中 填入zerotier分配给我们的虚拟ip<br>在子网掩码中 填入 255.255.255.0<br>点击 防火墙设置 把防火墙配置到lan口。<br><img src="C:\Users\Administrator\blog\themes\fluid\source\img\photo\防火墙设置.PNG" srcset="/img/loading.gif" alt="防火墙设置.PNG"><br> 保存&amp;应用</p>
 <p> 接下来 我们在openwrt的网络–防火墙–自定义规则中添加三条规则</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs iptables">iptables -I FORWARD -i 网卡名称 -j ACCEPT<br>iptables -I FORWARD -o 网卡名称 -j ACCEPT<br>iptables -t nat -I POSTROUTING -o 网卡名称 -j MASQUERADE<br></code></pre></td></tr></table></figure>
 <p>替换代码中网卡名称为zt开头的接口名称<br>重启防火墙。</p>
-<p><img src="C:\Users\Administrator\blog\photo\防火墙规则.PNG" srcset="/img/loading.gif" alt="防火墙设置.PNG"></p>
+<p><img src="C:\Users\Administrator\blog\themes\fluid\source\img\photo\防火墙规则.PNG" srcset="/img/loading.gif" alt="防火墙设置.PNG"></p>
 <h3 id="第四部，配置虚拟网络路由表"><a href="#第四部，配置虚拟网络路由表" class="headerlink" title="第四部，配置虚拟网络路由表"></a>第四部，配置虚拟网络路由表</h3><p><em>完成openwrt接口设置后，我们需要为它添加路由表</em><br>进入zerotier网络配置页面<br>找到openwrt虚拟ip并复制<br>在Advanced–add Routes中的Via 粘贴虚拟ip<br>在Destination中，填写你局域网中openwrt的<strong>网段地址</strong><br>如192.168.1.0<br>并在ip后填写  /24<br>/24 的意思是 子网掩码255.255.255.0<br>点击Submit。</p>
 <p>###总结<br>到此为止 openwrt配置Zerotier虚拟局域网就算完成了。<br>实际配置步骤还是很简单的。<br>因为zerotier的服务器架设在国外，在国内使用的话会有各种不稳定现象出现，<br>如果不能正常使用建议全部铲掉重来。</p>
 
